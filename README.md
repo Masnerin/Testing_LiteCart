@@ -1,1 +1,1 @@
-# Testing_LiteCart
+# Testing the LiteCart
