@@ -1,5 +1,6 @@
-# Задания по тестированию LiteCart
-# Тестирование входа в админку
+# Задания по тестированию LiteCart.
+# Локальный хост AMPPS на Windows10.
+# Тестирование входа в админку.
 
 import unittest
 from selenium import webdriver
