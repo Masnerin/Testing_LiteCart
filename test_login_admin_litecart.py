@@ -11,7 +11,7 @@ class LitecartAdminLogin(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Chrome()
 
-    def test_orders_in_masnerin_com(self):
+    def test_login_admin_litecart(self):
         driver = self.driver
         driver.get("http://localhost/litecart/admin/login.php")
         self.driver.maximize_window()
