@@ -34,7 +34,6 @@ class LitecartAdminMainMenuTesting(unittest.TestCase):
         self.assertIn("My LiteCart", driver.title)
 
         items = driver.find_elements_by_xpath("//li[@id='app-']")
-        print(items)
         for item in items:
             item.click()
             try:
