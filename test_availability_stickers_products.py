@@ -7,11 +7,11 @@ import unittest
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 
-class MasnerinOrder(unittest.TestCase):
+class LabelsOnProducts(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Chrome()
 
-    def test_orders_in_masnerin_com(self):
+    def test_labels_on_products(self):
         driver = self.driver
         driver.get("http://localhost/litecart/en/")
         self.driver.maximize_window()
