@@ -17,10 +17,10 @@ class MasnerinOrder(unittest.TestCase):
         self.driver.maximize_window()
         self.assertIn("My LiteCart", driver.title)
 
-        blocks = driver.find_elements_by_css_selector('a.link[data-toggle="lightbox"]')
+        blocks = driver.find_elements_by_css_selector('a.link[data-toggle="lightbox"]') # Создание списка блоков товаров
         print("\nНайдено", len(blocks), "блоков.")
 
-        for block in blocks:
+        for block in blocks:  # Цикл поиска наличия стикера в каждом блоке товара
             try:
                 sticker = block.find_element_by_css_selector('div.sticker')
             except NoSuchElementException:
