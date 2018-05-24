@@ -33,7 +33,7 @@ class LitecartAdminMainMenuTesting(unittest.TestCase):
             print("Box or Button not found!")
         self.assertIn("My LiteCart", driver.title)
 
-        items = driver.find_elements_by_xpath("//li[@id='app-']")
+        items = driver.find_elements_by_css_selector('li#app-')
         for item in items:
             item.click()
             try:
