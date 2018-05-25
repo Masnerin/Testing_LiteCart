@@ -15,7 +15,7 @@ class LitecartAdminMainMenuTesting(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Chrome()
         self.driver.maximize_window()
-        self.driver.wait = WebDriverWait(self.driver, 10)
+        self.driver.wait = WebDriverWait(self.driver, 5)
 
     def test_litecart_admin_main_menu(self):
         driver = self.driver
@@ -40,14 +40,12 @@ class LitecartAdminMainMenuTesting(unittest.TestCase):
             items = driver.wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'li#app-')))
             items[i].click()
             try:
-                elem_page = driver.wait.until(EC.presence_of_element_located((By.XPATH, "//h1")))
+                elem_page = driver.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'h1')))
             except NoSuchElementException:
                 print('"h1" tag not found')
 
-            try:
-                docs = driver.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'ul.docs')))
-            except NoSuchElementException:
-                print("Нет вложенных пунктов!")
+            docs = driver.find_elements_by_css_selector('ul.docs')
+            if len(docs) == 0:
                 continue
 
             items_docs = driver.wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'ul.docs a')))
@@ -55,17 +53,9 @@ class LitecartAdminMainMenuTesting(unittest.TestCase):
                 item_doc = driver.wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'ul.docs a')))
                 item_doc[j].click()
                 try:
-                    elem_page = driver.wait.until(EC.presence_of_element_located((By.XPATH, "//h1")))
+                    elem_page = driver.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'h1')))
                 except NoSuchElementException:
                     print('"h1" tag not found')
-
-        try:
-            elem_menu = driver.wait.until(EC.element_to_be_clickable((By.XPATH, "//img[@class ='center-block img-responsive']")))
-            elem_menu.click()
-        except TimeoutException:
-            print("Element of menu not found!")
-        self.assertIn("My LiteCart", driver.title)
-
 
     def tear_down(self):
         self.driver.quit()
