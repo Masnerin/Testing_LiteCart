@@ -17,15 +17,14 @@ class LabelsOnProducts(unittest.TestCase):
         self.driver.maximize_window()
         self.assertIn("My LiteCart", driver.title)
 
-        blocks = driver.find_elements_by_css_selector('a.link[data-toggle="lightbox"]') # Создание списка блоков товаров
-        print("\nНайдено", len(blocks), "блоков.")
+        blocks = driver.find_elements_by_css_selector('div.image-wrapper')
+        print("\nНайдено", len(blocks), "блоков товаров.")
 
-        for block in blocks:  # Цикл поиска наличия стикера в каждом блоке товара
-            try:
-                sticker = block.find_element_by_css_selector('div.sticker')
-            except NoSuchElementException:
-                print("В блоке:", block, "нет стикера!")
-            print("В блоке:", block, "есть стикер.")
+        for block in blocks:
+            sticker = block.find_elements_by_css_selector('div.sticker')
+            if len(sticker) == 0: print("В блоке:", block, "нет стикера!")
+            if len(sticker) == 1: print("В блоке:", block, "есть стикер.")
+            if len(sticker) > 1: print("В блоке:", block, "более одного стикера!")
 
     def tearDown(self):
         self.driver.quit()
