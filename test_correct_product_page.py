@@ -21,9 +21,11 @@ class CorrectProductPageTesting(unittest.TestCase):
         self.assertIn("My LiteCart", driver.title)
 
 # Выбор товара
-        product = driver.find_element_by_css_selector('div.product')
+
+        product = driver.find_element_by_css_selector('div#box-campaigns')
 
 # Проверка параметров товара на главной странице
+
         list_attr_prod = []  # Создание списка параметров товара на главной странице
 
         product_name = product.find_element_by_css_selector('div.name').get_attribute('textContent')
@@ -61,10 +63,12 @@ class CorrectProductPageTesting(unittest.TestCase):
         else: print("и не жирная.")
 
 # Переход на страницу товара
+
         product_link = product.find_element_by_css_selector('a.link').get_attribute('href')
         driver.get(product_link)
 
 # Извлечение параметров товара на странице товара
+
         list_attr_prod_b = []  # Создание списка параметров товара на странице товара
 
         product_b = driver.find_element_by_css_selector('div#box-product')
@@ -99,7 +103,6 @@ class CorrectProductPageTesting(unittest.TestCase):
     def tear_down(self):
         self.driver.quit()
 
-# Функция получения чисел из строки
 def find_numbers(string, ints=True):
     numexp = re.compile(r'[-]?\d[\d,]*[\.]?[\d{2}]*')  # optional - in front
     numbers = numexp.findall(string)
