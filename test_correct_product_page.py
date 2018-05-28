@@ -21,11 +21,9 @@ class CorrectProductPageTesting(unittest.TestCase):
         self.assertIn("My LiteCart", driver.title)
 
 # Выбор товара
-
         product = driver.find_element_by_css_selector('div#box-campaigns')
 
 # Проверка параметров товара на главной странице
-
         list_attr_prod = []  # Создание списка параметров товара на главной странице
 
         product_name = product.find_element_by_css_selector('div.name').get_attribute('textContent')
@@ -63,14 +61,11 @@ class CorrectProductPageTesting(unittest.TestCase):
         else: print("и не жирная.")
 
 # Переход на страницу товара
-
         product_link = product.find_element_by_css_selector('a.link').get_attribute('href')
         driver.get(product_link)
 
 # Извлечение параметров товара на странице товара
-
         list_attr_prod_b = []  # Создание списка параметров товара на странице товара
-
         product_b = driver.find_element_by_css_selector('div#box-product')
         product_name_b = product_b.find_element_by_css_selector('h1.title').get_attribute('textContent')
         list_attr_prod_b.append(product_name_b)
@@ -87,15 +82,9 @@ class CorrectProductPageTesting(unittest.TestCase):
         campaign_price_stile_b = product_b.find_element_by_css_selector('.campaign-price').get_attribute('localName')
         list_attr_prod_b.append(campaign_price_stile_b)
 
-        print(list_attr_prod)
-        print(list_attr_prod_b)
-
 # Сравнение параметров товара на главной странице и на странице товара
-
         for i in range(0, len(list_attr_prod)):
-            a = list_attr_prod[i]
-            b = list_attr_prod_b[i]
-            if a == b:
+            if list_attr_prod[i] == list_attr_prod_b[i]:
                 print("Страница товара открывается корректно.")
                 break
             print("!!! Некорректное открытие страницы товара !!!")
@@ -103,6 +92,7 @@ class CorrectProductPageTesting(unittest.TestCase):
     def tear_down(self):
         self.driver.quit()
 
+# Функция выделения чисел из строки
 def find_numbers(string, ints=True):
     numexp = re.compile(r'[-]?\d[\d,]*[\.]?[\d{2}]*')  # optional - in front
     numbers = numexp.findall(string)
