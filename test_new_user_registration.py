@@ -48,7 +48,7 @@ class NewUserRegistrationTesting(unittest.TestCase):
         time.sleep(5)
         driver.find_element_by_css_selector('button[name=login]').click()
 
-# Повторный выход из аккаунта
+# Окончательный выход из аккаунта
         driver.find_element_by_link_text("Logout").click()
 
 # Функция создания уникального e-mail
