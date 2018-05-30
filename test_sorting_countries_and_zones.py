@@ -69,7 +69,7 @@ class ListCountriesSortingTesting(unittest.TestCase):
             trs_z = driver.find_elements_by_css_selector('table#table-zones tr')
             zones = []
             zones_sort = []
-            for i in range(1, len(trs_z)):
+            for i in range(1, (len(trs_z) - 1)):
                 tds_z = trs_z[i].find_elements_by_css_selector('td')
                 zone = tds_z[2].get_attribute('textContent')
                 zones.append(zone)
@@ -80,7 +80,7 @@ class ListCountriesSortingTesting(unittest.TestCase):
                 if zones[j] != zones_sort[j]:
                     print("= Список зон не сортирован!")
                     break
-                print("= Список зон сортирован.")
+            print("= Список зон сортирован.")
             driver.find_element_by_xpath("//*[text()='Countries']").click()
             trs = driver.find_elements_by_css_selector('form[name=countries_form] tr.row')
 
@@ -123,7 +123,7 @@ class ListCountriesSortingTesting(unittest.TestCase):
             zones_sort = []
             for i in range(1, (len(trs_z) - 1)):
                 tds_z = trs_z[i].find_elements_by_css_selector('td')
-                zone = tds_z[2].get_attribute('textContent')
+                zone = tds_z[2].find_element_by_css_selector('option[selected=selected]').get_attribute('textContent')
                 zones.append(zone)
                 zones_sort.append(zone)
             print("Количество найденных зон:", len(zones))
