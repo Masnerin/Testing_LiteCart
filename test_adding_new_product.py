@@ -1,8 +1,9 @@
 # Задания по тестированию LiteCart.
-# сценарий для добавления нового товара (продукта)
+# Проверка добавления нового товара
 # в учебном приложении liteCart.
 
 
+import os
 import random
 import unittest
 from selenium import webdriver
@@ -50,7 +51,7 @@ class AddingNewProductTesting(unittest.TestCase):
         quantity.clear()
         quantity.send_keys(10)
         driver.find_element_by_css_selector('select[name=sold_out_status_id] option[value="2"]').click()
-        driver.find_element_by_css_selector('input[type=file]').send_keys('C:\images\product_new.jpg')
+        driver.find_element_by_css_selector('input[type=file]').send_keys(os.getcwd() + "\product_new.jpg")
         driver.find_element_by_css_selector('input[name=date_valid_from]').send_keys('30052018')
         driver.find_element_by_css_selector('input[name=date_valid_to]').send_keys('31122018')
 
