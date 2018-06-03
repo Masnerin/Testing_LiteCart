@@ -24,18 +24,14 @@ class ProductsInTheCartTesting(unittest.TestCase):
         driver.get("http://localhost/litecart")
         self.assertIn("My LiteCart", driver.title)
 
-# Выбор первого товара
+# Выбор товаров
         wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'a.link[title="Green Duck"]'))).click()
         wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'button[name="add_cart_product"]'))).click()
         wait.until(EC.text_to_be_present_in_element((By.CSS_SELECTOR, 'span.quantity'), '1'))
-
-# Выбор второго товара
         driver.get("http://localhost/litecart")
         wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'a.link[title="Red Duck"]'))).click()
         wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'button[name="add_cart_product"]'))).click()
         wait.until(EC.text_to_be_present_in_element((By.CSS_SELECTOR, 'span.quantity'), '2'))
-
-# Выбор третьего товара
         driver.get("http://localhost/litecart")
         wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'a.link[title="Blue Duck"]'))).click()
         wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'button[name="add_cart_product"]'))).click()
@@ -43,7 +39,6 @@ class ProductsInTheCartTesting(unittest.TestCase):
 
 # Удаление товаров из карзины
         wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'a.link'))).click()
-
         element = driver.find_element_by_css_selector('tr.footer')
         wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'button[value=Remove]'))).click()
         element = driver.find_element_by_css_selector('tr.footer')
