@@ -43,7 +43,7 @@ class BrowserLogsTesting(unittest.TestCase):
             product_name = driver.find_element_by_css_selector('input[name="name[en]"]').get_attribute('value')
             print(i, '-', product_name)
             for log in driver.get_log("browser"):
-                print("Log:", log)
+                print("Message:", log)
             driver.wait.until(EC.element_to_be_clickable((By.XPATH, "//*[text()='Catalog']"))).click()
             driver.wait.until(EC.element_to_be_clickable((By.XPATH, "//*[text()='Rubber Ducks']"))).click()
 
