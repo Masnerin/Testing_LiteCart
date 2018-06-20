@@ -36,17 +36,12 @@ class ProductsInTheCartTesting(unittest.TestCase):
 
 # Удаление товаров из корзины
         driver.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'a.link'))).click()
-        products = driver.find_elements_by_css_selector('td.item')
-        block = driver.find_element_by_css_selector('div#checkout-cart-wrapper')
-        for i in range(len(products)):
-            remove = driver.find_elements_by_css_selector('button[value = Remove]')
-            for j in remove:
-                driver.wait.until(EC.visibility_of(block.find_element_by_css_selector('form[name=cart_form]')))
-                driver.wait.until(EC.visibility_of(j)).click()
-                driver.wait.until(EC.staleness_of(products[0]))
-                break
-            continue
-        driver.wait.until(EC.staleness_of(self.driver.find_element_by_css_selector('div#box-checkout-summary')))
+        number_product = driver.find_elements_by_css_selector('li.shortcut')
+        for i in range(0, len(number_product)):
+            element = driver.find_elements_by_css_selector('table.dataTable.rounded-corners tr')
+            a = len(element)
+            driver.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'button[value=Remove]'))).click()
+            driver.wait.until(EC.staleness_of(element[a - 1]))
 
     def tear_down(self):
         self.driver.quit()
