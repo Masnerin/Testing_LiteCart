@@ -34,17 +34,22 @@ class ProductsInTheCartTesting(unittest.TestCase):
             driver.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'button[name="add_cart_product"]'))).click()
             driver.wait.until(EC.text_to_be_present_in_element((By.CSS_SELECTOR, 'span.quantity'), str(j)))
 
-# Удаление товаров из карзины
+# Удаление товаров из корзины
         driver.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'a.link'))).click()
-        number_product = driver.find_elements_by_css_selector('li.shortcut')
-        for i in range(0, len(number_product)):
-            element = driver.find_elements_by_css_selector('table.dataTable.rounded-corners tr')
-            a = len(element)
-            driver.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'button[value=Remove]'))).click()
-            driver.wait.until(EC.staleness_of(element[a - 1]))
+        products = driver.find_elements_by_css_selector('td.item')
+        block = driver.find_element_by_css_selector('div#checkout-cart-wrapper')
+        for i in range(len(products)):
+            remove = driver.find_elements_by_css_selector('button[value = Remove]')
+            for j in remove:
+                driver.wait.until(EC.visibility_of(block.find_element_by_css_selector('form[name=cart_form]')))
+                driver.wait.until(EC.visibility_of(j)).click()
+                driver.wait.until(EC.staleness_of(products[0]))
+                break
+            continue
+        driver.wait.until(EC.staleness_of(self.driver.find_element_by_css_selector('div#box-checkout-summary')))
 
     def tear_down(self):
-        driver.quit()
+        self.driver.quit()
 
 
 if __name__ == "__main__":
